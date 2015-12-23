@@ -6,18 +6,27 @@
 	<link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-	<form data-bind="submit: addListItem">
-		Add name: <input data-bind="value: newTaskText" />
-		<button type="submit">Add</button>
-	</form>
 
-<ul class="list" data-bind="foreach: tasks">
-	<li>
-		<span class="name" data-bind="text: title"></span>
-		 <input type="checkbox" data-bind="checked: flag" />
-		<a href="#" data-bind="click: $parent.removeTask">Delete</a>
-	</li>
-</ul>
+	<section class="container">
+		<form data-bind="submit: addListItem">
+			Add new to-do: <input data-bind="value: newTaskText, valueUpdate: 'afterkeydown'" />
+			<button type="submit" data-bind="enable: newTaskText().length > 0">Add</button>
+		</form>
+
+		<ul class="list" data-bind="foreach: tasks">
+			<li>
+				<span class="name" data-bind="visible: !editing(), text: title, click: edit"></span>
+				<input class="name" type="text" data-bind="visible: editing, value: title, hasFocus: editing" />
+				<label><input type="checkbox" data-bind="checked: flag" />selected</label>
+				<a href="#" data-bind="click: $parent.removeTask">Delete</a>
+			</li>
+		</ul>
+
+		<div class="sumCheck" data-bind="visible: incompleteTasks().length > 0">Done
+			<span data-bind="text: incompleteTasks().length"></span>
+			<a href="#" data-bind="click: removeAllTask">Delete all selected</a>
+		</div>
+	</section>
 
 <script src="js/lib/knockout-min.js"></script>
 <script src="js/script.js"></script>
