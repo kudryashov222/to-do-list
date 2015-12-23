@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>To-do list</title>
+	<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+	<form data-bind="submit: addListItem">
+		Add name: <input data-bind="value: newTaskText" />
+		<button type="submit">Add</button>
+	</form>
+
+<ul class="list" data-bind="foreach: tasks">
+	<li>
+		<span class="name" data-bind="text: title"></span>
+		 <input type="checkbox" data-bind="checked: flag" />
+		<a href="#" data-bind="click: $parent.removeTask">Delete</a>
+	</li>
+</ul>
+
+<script src="js/lib/knockout-min.js"></script>
+<script src="js/script.js"></script>
+
+</body>
+</html>

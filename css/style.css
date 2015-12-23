@@ -1,0 +1,16 @@
+.list li {
+    border: 1px solid #098;
+    list-style: outside none none;
+    margin: 5px 0;
+    padding: 10px 14px;
+}
+.list .name {
+    font-size: 18px;
+    display: inline-block;
+    width: 60%;
+}
+
+.list a {
+    display: inline-block;
+    float: right;
+}
