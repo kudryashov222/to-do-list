@@ -27,3 +27,6 @@ input.name {
 form input {
     padding: 5px;
 }
+form button {
+    padding: 4px 20px;
+}

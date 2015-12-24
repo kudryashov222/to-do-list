@@ -11,14 +11,16 @@
 		<form data-bind="submit: addListItem">
 			Add new to-do: <input data-bind="value: newTaskText, valueUpdate: 'afterkeydown'" />
 			<button type="submit" data-bind="enable: newTaskText().length > 0">Add</button>
+			<button type="submit" data-bind="click: clearHistory, enable: tasks().length > 0">Clear History</button>
+			<button type="submit" data-bind="click: loadHistory">Load History</button>
 		</form>
 
 		<ul class="list" data-bind="foreach: tasks">
 			<li>
 				<span class="name" data-bind="visible: !editing(), text: title, click: edit"></span>
-				<input class="name" type="text" data-bind="visible: editing, value: title, hasFocus: editing" />
-				<label><input type="checkbox" data-bind="checked: flag" />selected</label>
-				<a href="#" data-bind="click: $parent.removeTask">Delete</a>
+				<input class="name" type="text" data-bind="visible: editing, value: title, hasFocus: editing, event:{ change: $parent.local}" />
+				<label data-bind="visible: !editing()"><input type="checkbox" data-bind="checked: flag, event:{ change: $parent.local}" />selected</label>
+				<a href="#" data-bind="click: $parent.removeTask, visible: !editing()">Delete</a>
 			</li>
 		</ul>
 
@@ -28,6 +30,7 @@
 		</div>
 	</section>
 
+<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
 <script src="js/lib/knockout-min.js"></script>
 <script src="js/script.js"></script>
 
