@@ -3,36 +3,90 @@
 <head>
 	<meta charset="UTF-8">
 	<title>To-do list</title>
+
+	<link rel="stylesheet" href="bower/bootstrap-3.3.6-dist/css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/tooltipster.css">
 	<link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
-	<section class="container">
-		<form data-bind="submit: addListItem">
-			Add new to-do: <input data-bind="value: newTaskText, valueUpdate: 'afterkeydown'" />
-			<button type="submit" data-bind="enable: newTaskText().length > 0">Add</button>
-			<button type="submit" data-bind="click: clearHistory, enable: tasks().length > 0">Clear History</button>
-			<button type="submit" data-bind="click: loadHistory">Load History</button>
-		</form>
 
+	<section class="container">
+		<nav class="row">
+			<a href="index.html">Home</a>
+			<a href="link.html">Link</a>
+		</nav>
+		<div class="row">
+			<form class="col-md-12" data-bind="submit: addListItem">
+				<label class="control-label">Add new to-do:</label>
+				<input data-bind="value: newTaskText, valueUpdate: 'afterkeydown', event:{ change: local_input}" />
+				<!-- <button data-bind="tooltipster: {}" class="tooltip" title="This one works">Static... it works</button> -->
+				<button class="btn btn-primary" data-bind="tooltipster: {position: 'top'}" title="Add one ToDo to list" type="submit">
+					Add
+					<i class="glyphicon glyphicon-plus"></i>
+				</button>
+				<button class="btn btn-info" title="Restore the previous session " data-bind="click: loadHistory, tooltipster: {}">
+					Load History
+					<i class="glyphicon glyphicon-cloud"></i>
+				</button>
+			</form>
+		</div>
 		<ul class="list" data-bind="foreach: tasks">
-			<li>
-				<span class="name" data-bind="visible: !editing(), text: title, click: edit"></span>
-				<input class="name" type="text" data-bind="visible: editing, value: title, hasFocus: editing, event:{ change: $parent.local}" />
-				<label data-bind="visible: !editing()"><input type="checkbox" data-bind="checked: flag, event:{ change: $parent.local}" />selected</label>
-				<a href="#" data-bind="click: $parent.removeTask, visible: !editing()">Delete</a>
+			<li class="row" data-bind="css: { 'done': flag }">
+				<div class="col-sm-6 col-xs-12">
+					<span class="name" data-bind="visible: !editing(), text: title, click: edit"></span>
+					<input class="name" type="text" data-bind="visible: editing, value: title, hasFocus: editing, event:{ change: $parent.local}" />
+				</div>
+				<div class="col-sm-3 col-xs-6">
+					<label class="checked" data-bind="visible: !editing()">
+						<input type="checkbox" data-bind="checked: flag, event:{ change: $parent.local}" />
+						selected
+						<i class="glyphicon glyphicon-ok"></i>
+					</label>
+				</div>
+				<div class="col-sm-3 col-xs-6">
+					<a class="btn btn-danger" title="Remove one ToDo" href="#" data-bind="click: $parent.removeTask, visible: !editing(), tooltipster: {}">
+						Delete
+						<i class="glyphicon glyphicon-trash"></i>
+					</a>
+				</div>
 			</li>
 		</ul>
 
 		<div class="sumCheck" data-bind="visible: incompleteTasks().length > 0">Done
-			<span data-bind="text: incompleteTasks().length"></span>
-			<a href="#" data-bind="click: removeAllTask">Delete all selected</a>
+			<span data-bind="text: incompleteTasks().length"></span> ToDo
+			<a class="btn btn-danger" title="Remove all selected ToDo" href="#" data-bind="click: removeAllTask, tooltipster: {}">
+				Delete all selected
+				<i class="glyphicon glyphicon-trash"></i>
+			</a>
 		</div>
+
+		<div class="file-wrapp">
+			<!-- <label for="exampleInputFile">File input</label>
+			<input class="btn btn-default btn-file" type="file" id="exampleInputFile"> -->
+			<label class="btn btn-primary btn-file">
+				Browse... <input data-bind="value: newTaskFile" type="file">
+				<input class="file-text" type="text" data-bind="value: newTaskFile" />
+				</label>
+			<button class="btn btn-primary" data-bind="click: addFileItem, enable: newTaskFile() !== ''" type="submit">
+				Add
+				<i class="glyphicon glyphicon-plus"></i>
+			</button>
+			<ul class="list-file" data-bind="foreach: filesName">
+				<li>
+					<span data-bind="text: file"></span>
+					<a href="#" class="glyphicon glyphicon-remove" data-bind="click: $parent.removeFileItem"></a>
+				</li>
+			</ul>
+		</div>
+
 	</section>
 
-<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
-<script src="js/lib/knockout-min.js"></script>
-<script src="js/script.js"></script>
+<script type="text/javascript" src="js/lib/jquery.min.js"></script>
+<script type="text/javascript" src="bower/bootstrap-3.3.6-dist/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/lib/knockout-min.js"></script>
+<script type="text/javascript" src="js/lib/jquery.tooltipster.min.js"></script>
+<script type="text/javascript" src="js/script.js"></script>
 
 </body>
 </html>
