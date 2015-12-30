@@ -62,16 +62,21 @@
 		</div>
 
 		<div class="file-wrapp">
-			<!-- <label for="exampleInputFile">File input</label>
-			<input class="btn btn-default btn-file" type="file" id="exampleInputFile"> -->
+
 			<label class="btn btn-primary btn-file">
-				Browse... <input data-bind="value: newTaskFile" type="file">
+				Browse... <input id="file" data-bind="value: newTaskFile" type="file">
 				<input class="file-text" type="text" data-bind="value: newTaskFile" />
 				</label>
 			<button class="btn btn-primary" data-bind="click: addFileItem, enable: newTaskFile() !== ''" type="submit">
 				Add
 				<i class="glyphicon glyphicon-plus"></i>
 			</button>
+			<div class="error" data-bind="visible: ErrorFile() !== ''">
+				<span data-bind="text: ErrorFile"></span>
+				<i class="glyphicon glyphicon-warning-sign"></i>
+			</div>
+
+			<div id="dropFile" data-bind="css: { 'error-drop': ErrorFile() !== '' }">Drop files</div>
 			<ul class="list-file" data-bind="foreach: filesName">
 				<li>
 					<span data-bind="text: file"></span>

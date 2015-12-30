@@ -118,6 +118,13 @@ nav a {
     max-width: 400px;
     padding: 5px;
 }
+.list-file span {
+    display: inline-block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 93%;
+}
 .list-file .glyphicon-remove {
     float: right;
     margin-top: 3px;
@@ -141,7 +148,42 @@ nav a {
     cursor: inherit;
     display: block;
 }
-
+.error {
+    color: #f00;
+    font-size: 12px;
+    margin: 6px;
+}
+.error span {
+    margin-right: 147px;
+}
+.file-wrapp {
+    position: relative;
+    margin-top: 7%;
+}
+#dropFile {
+    border: 1px solid #aaa;
+    border-radius: 50%;
+    color: #aaa;
+    display: inline-block;
+    font-size: 24px;
+    height: 200px;
+    left: 450px;
+    top: 20px;
+    line-height: 200px;
+    position: absolute;
+    text-align: center;
+    vertical-align: top;
+    width: 200px;
+    -webkit-transition: all 400ms ease 0s;
+    -moz-transition: all 400ms ease 0s;
+    transition: all 400ms ease 0s;
+}
+#dropFile.hover {
+    font-size: 30px;
+    height: 250px;
+    line-height: 250px;
+    width: 250px;
+}
 @media screen and (max-width: 700px){
     form input {
         margin-bottom: 10px;
@@ -149,5 +191,8 @@ nav a {
     }
     .list .name {
         margin: 15px 0
+    }
+    #dropFile {
+        display: none;
     }
 }
