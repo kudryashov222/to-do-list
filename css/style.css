@@ -13,7 +13,7 @@ a:active, a:hover, a:focus, button:active, button:focus {
     list-style: none;
     border-radius: 5px;
     margin: 5px 0;
-    padding: 10px 14px;
+    padding: 16px 14px 10px;
     box-shadow: 1.5px 2.6px 4.7px 0.3px rgba(0, 0, 0, 0.24);
 }
 .list .name {
@@ -116,7 +116,7 @@ nav a {
     border: 1px solid;
     margin: 4px 0;
     max-width: 400px;
-    padding: 5px;
+    padding: 5px 5px 0px;
 }
 .list-file span {
     display: inline-block;
@@ -183,6 +183,14 @@ nav a {
     height: 250px;
     line-height: 250px;
     width: 250px;
+}
+.tooltipster-base {
+    max-width: 800px;
+}
+.tooltipster-base img {
+    height: auto;
+    width: auto;
+    max-width: 800px;
 }
 @media screen and (max-width: 700px){
     form input {

@@ -25,7 +25,7 @@
 					Add
 					<i class="glyphicon glyphicon-plus"></i>
 				</button>
-				<button class="btn btn-info" title="Restore the previous session " data-bind="click: loadHistory, tooltipster: {}">
+				<button class="btn btn-info tool" data-bind="click: loadHistory, tooltipster: {}, attr: {title: 'Restore the previous session'}">
 					Load History
 					<i class="glyphicon glyphicon-cloud"></i>
 				</button>
@@ -78,7 +78,7 @@
 
 			<div id="dropFile" data-bind="css: { 'error-drop': ErrorFile() !== '' }">Drop files</div>
 			<ul class="list-file" data-bind="foreach: filesName">
-				<li>
+				<li class="tool" data-bind="tooltipster: {position: 'top'}, attr: {title: '&lt;img src=&quot;'+$data.bas64()+' &quot; &gt;'}">
 					<span data-bind="text: file"></span>
 					<a href="#" class="glyphicon glyphicon-remove" data-bind="click: $parent.removeFileItem"></a>
 				</li>

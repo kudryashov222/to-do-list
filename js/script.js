@@ -27,6 +27,9 @@ function ListToDO() {
     holder.ondragover = function () {
           this.className = 'hover'; return false;
     };
+    holder.ondragleave = function () {
+          this.className = 'not-hover'; return false;
+    };
 
     holder.ondrop = function (e) {
       e.preventDefault();
@@ -65,7 +68,7 @@ function ListToDO() {
           fr = new FileReader();
           fr.onload = function(e){
               e=fr.result;
-              self.filesName.push(new File({ file: file.name, bas64: e }));
+              self.filesName.push(new File({ file: file.name, bas64: e}));
               self.newTaskFile("");
               self.ErrorFile("");
               localStorage.setItem('local_input_file', ko.toJSON(self.filesName()));
@@ -126,21 +129,19 @@ function ListToDO() {
 
 ko.bindingHandlers.tooltipster = {
     init: function(element, valueAccessor){
-        $(element).tooltipster(ko.unwrap(valueAccessor()));
+        var flag = true;
+          $(element).hover(function(){
+            if (flag) {
+              $(this).tooltipster({
+                contentAsHTML: true
+              },
+              ko.unwrap(valueAccessor()));
+              flag=false;
+            }
+        });
     }
 };
 
 
 var a = new ListToDO();
 ko.applyBindings(a);
-
-
-// $(document).ready(function(){
-//     var holder = document.getElementById('dropFile');
-
-//     holder.ondrop = function (e) {
-//       e.preventDefault();
-//       var file = e.dataTransfer.files[0];
-//       $('#file').attr('value', file.name);
-//     };
-// });
